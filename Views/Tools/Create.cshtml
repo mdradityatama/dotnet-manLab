@@ -1,0 +1,23 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Create Tool";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post" action="/Tools/CreatePost">
+    <div class="form-group">
+        <label for="toolName">Name Tool</label>
+        <input class="form-control" id="toolName" name="nameTool" placeholder="Enter name Tool">
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" name="category">
+            @foreach (Category category in Model)
+            {
+                <option value="@category.CategoryID">@category.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

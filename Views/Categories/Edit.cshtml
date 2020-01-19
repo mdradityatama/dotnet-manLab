@@ -1,0 +1,29 @@
+﻿@model Category
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+@if (Model != null)
+{
+<form method="post" action="/Categories/EditPost/@Model.CategoryID">
+    <div class="form-group">
+        <label for="category-id">Category ID</label>
+        <input class="form-control" id="category-id" name="categoryID" value="@Model.CategoryID" readonly>
+    </div>
+    <div class="form-group">
+        <label for="category-name">Category Name</label>
+        <input class="form-control" id="category-name" name="categoryName" placeholder="Enter category name" value="@Model.Name">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a class="btn btn-secondary" asp-controller="Categories" asp-action="Details" asp-route-id="@Model.CategoryID">Cancel</a>
+</form>
+}
+else
+{
+    <div class="alert alert-danger">
+        Kategori tidak ada di database!
+    </div>
+}

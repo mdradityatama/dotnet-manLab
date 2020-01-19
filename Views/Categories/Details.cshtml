@@ -1,0 +1,31 @@
+﻿@model Category
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@if (Model != null)
+{
+    <div>
+        <div>Category ID</div>
+        <div>@Model.CategoryID</div>
+    </div>
+
+    <div>
+        <div>Category Name</div>
+        <div>@Model.Name</div>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-controller="Categories" asp-action="Edit" asp-route-id="@Model.CategoryID">Edit</a>
+        <a class="btn btn-secondary" asp-controller="Categories" asp-action="Index">Back</a>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        Kategori tidak ada di database
+    </div>
+}
+
