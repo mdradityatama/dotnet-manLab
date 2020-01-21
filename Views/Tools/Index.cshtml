@@ -27,7 +27,13 @@
                 <th scope="row">@tools.ToolID</th>
                 <td>@tools.Name</td>
                 <td>@tools.Category.Name</td>
-                <td>[To : do]</td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Tools" asp-action="Edit" asp-route-id="@tools.ToolID">Edit</a>
+                    <a class="btn btn-info" asp-controller="Tools" asp-action="Details" asp-route-id="@tools.ToolID">Details</a>
+                    <form method="post" action="/Tools/DeletePost/@tools.ToolID" class="form-inline">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>

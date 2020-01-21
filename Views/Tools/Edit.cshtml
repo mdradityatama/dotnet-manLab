@@ -1,0 +1,40 @@
+﻿@model Tool
+
+@{
+    ViewData["Title"] = "Edit Tool";
+    IEnumerable<Category> Category = ViewData["Categories"] as IEnumerable<Category>;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model != null)
+{
+<form method="post" action="/Tools/EditPost/@Model.ToolID">
+    <div class="form-group">
+        <label for="tool-id">Tool ID</label>
+        <input class="form-control" id="tool-id" name="toolID" value="@Model.ToolID" readonly>
+    </div>
+    <div class="form-group">
+        <label for="tool-name">Tool Name</label>
+        <input class="form-control" id="tool-name" name="toolName" placeholder="Enter tool name" value="@Model.Name">
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" name="category">
+            @foreach (Category categories in Category)
+            {
+                <option value="@categories.CategoryID">@categories.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a class="btn btn-secondary" asp-controller="Tools" asp-action="Details" asp-route-id="@Model.ToolID">Cancel</a>
+</form>
+}
+else
+{
+    <div class="alert alert-danger">
+        Tool tidak ada di database!
+    </div>
+}
+

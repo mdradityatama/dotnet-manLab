@@ -1,0 +1,30 @@
+﻿@model Tool
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@if (Model != null)
+{
+    <div>
+        <div>Category ID</div>
+        <div>@Model.ToolID</div>
+    </div>
+
+    <div>
+        <div>Category Name</div>
+        <div>@Model.Name</div>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-controller="Tools" asp-action="Edit" asp-route-id="@Model.ToolID">Edit</a>
+        <a class="btn btn-secondary" asp-controller="Tools" asp-action="Index">Back</a>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        Alat tidak ada di database
+    </div>
+}

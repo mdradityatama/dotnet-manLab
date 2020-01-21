@@ -28,7 +28,7 @@ namespace ManLab.Controllers
 
             return View(categories);
         }
-        
+
         [HttpPost]
         public IActionResult CreatePost()
         {
@@ -45,6 +45,60 @@ namespace ManLab.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Tools");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            Tool tool = _context.Tools.Where(x => x.ToolID == id).SingleOrDefault();
+
+            List<Category> categories = _context.Categories.ToList();
+            ViewData["Categories"] = categories;
+
+            return View(tool);
+        }
+
+        [HttpPost]
+        public IActionResult EditPost(int id)
+        {
+            Tool tool = _context.Tools.Where(x => x.ToolID == id).SingleOrDefault();
+
+            List<Category> categories = _context.Categories.ToList();
+            ViewData["Categories"] = categories;
+
+            if (tool != null)
+            {
+                string name = Request.Form["toolName"];
+                string category = Request.Form["category"];
+                tool.Name = name;
+                tool.CategoryID = int.Parse(category);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Tools");
+            }
+
+            return View("Edit", tool);
+        }
+
+        [HttpPost]
+        public IActionResult DeletePost(int id)
+        {
+            Tool tool = _context.Tools.Where(x => x.ToolID == id).SingleOrDefault();
+
+            if (tool != null)
+            {
+                _context.Tools.Remove(tool);
+                _context.SaveChanges();
+            }
+
+            List<Tool> tools = _context.Tools.Include(c => c.Category).ToList();
+
+            return RedirectToAction("Index", tool);
+        }
+
+        public IActionResult Details(int id)
+        {
+            Tool tool = _context.Tools.Where(x => x.ToolID == id).SingleOrDefault();
+
+            return View(tool);
         }
     }
 }
