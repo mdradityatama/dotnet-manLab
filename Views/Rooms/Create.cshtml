@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Create Room";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post" action="/Rooms/CreatePost">
+    <div class="form-group">
+        <label for="roomName">Name Room</label>
+        <input class="form-control" id="roomName" name="nameRoom" placeholder="Enter name Room">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -17,7 +17,7 @@ namespace ManLab.Controllers
         }
         public IActionResult Index()
         {
-            List<Tool> tools = _context.Tools.Include(c => c.Category).ToList();
+            List<Tool> tools = _context.Tools.Include(r => r.Room).Include(c => c.Category).ToList();
 
             return View(tools);
         }
@@ -25,6 +25,8 @@ namespace ManLab.Controllers
         public IActionResult Create()
         {
             List<Category> categories = _context.Categories.ToList();
+            List<Room> rooms = _context.Rooms.ToList();
+            ViewData["Rooms"] = rooms;
 
             return View(categories);
         }
@@ -34,11 +36,13 @@ namespace ManLab.Controllers
         {
             string name = Request.Form["nameTool"];
             string categoriid = Request.Form["category"];
+            string roomid = Request.Form["room"];
 
             Tool tool = new Tool
             {
                 Name = name,
-                CategoryID = int.Parse(categoriid)
+                CategoryID = int.Parse(categoriid),
+                RoomID = int.Parse(roomid)
             };
 
             _context.Tools.Add(tool);

@@ -1,0 +1,37 @@
+﻿@model List<Room>
+@{
+    ViewData["Title"] = "Rooms";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="mb-3 text-right">
+    <a class="btn btn-primary" asp-controller="Rooms " asp-action="Create">Create Tool</a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name Rooms</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Room rooms in Model)
+        {
+            <tr>
+                <th scope="row">@rooms.RoomID</th>
+                <td>@rooms.Name</td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Rooms" asp-action="Edit" asp-route-id="@rooms.RoomID">Edit</a>
+                    <a class="btn btn-info" asp-controller="Rooms" asp-action="Details" asp-route-id="@rooms.RoomID">Details</a>
+                    <form method="post" action="/Rooms/DeletePost/@rooms.RoomID" class="form-inline">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

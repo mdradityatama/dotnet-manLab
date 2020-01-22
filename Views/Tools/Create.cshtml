@@ -1,6 +1,7 @@
 ﻿@model List<Category>
 @{
     ViewData["Title"] = "Create Tool";
+    IEnumerable<Room> Room = ViewData["Rooms"] as IEnumerable<Room>;
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -16,6 +17,15 @@
             @foreach (Category category in Model)
             {
                 <option value="@category.CategoryID">@category.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Room">Room</label>
+        <select class="form-control" name="room">
+            @foreach (Room rooms in Room)
+            {
+                <option value="@rooms.RoomID">@rooms.Name</option>
             }
         </select>
     </div>

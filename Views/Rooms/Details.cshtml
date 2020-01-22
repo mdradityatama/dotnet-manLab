@@ -1,0 +1,29 @@
+﻿@model Room
+@{
+    ViewData["Title"] = "Details Room";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model != null)
+{
+    <div>
+        <div>Category ID</div>
+        <div>@Model.RoomID</div>
+    </div>
+
+    <div>
+        <div>Category Name</div>
+        <div>@Model.Name</div>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-controller="Rooms" asp-action="Edit" asp-route-id="@Model.RoomID">Edit</a>
+        <a class="btn btn-secondary" asp-controller="Rooms" asp-action="Index">Back</a>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        Room tidak ada di database
+    </div>
+}
