@@ -1,0 +1,29 @@
+﻿@model Room
+
+@{
+    ViewData["Title"] = "Edit Room";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model != null)
+{
+    <form method="post" action="/Rooms/EditPost/@Model.RoomID">
+        <div class="form-group">
+            <label for="room-id">Room ID</label>
+            <input class="form-control" id="room-id" name="roomID" value="@Model.RoomID" readonly>
+        </div>
+        <div class="form-group">
+            <label for="room-name">Room Name</label>
+            <input class="form-control" id="room-name" name="toolName" placeholder="Enter room name" value="@Model.Name">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-secondary" asp-controller="Rooms" asp-action="Details" asp-route-id="@Model.RoomID">Cancel</a>
+    </form>
+}
+else
+{
+    <div class="alert alert-danger">
+        Room tidak ada di database!
+    </div>
+}

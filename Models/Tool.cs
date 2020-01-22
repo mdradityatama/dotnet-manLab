@@ -10,6 +10,8 @@ namespace ManLab.Models
         public int ToolID { get; set; }
         public string Name { get; set; }
         public int CategoryID { get; set; }
+        public int RoomID { get; set; }
         public Category Category { get; set; }
+        public Room Room { get; set; }
     }
 }
