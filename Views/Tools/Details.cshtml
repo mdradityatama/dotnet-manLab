@@ -9,13 +9,23 @@
 @if (Model != null)
 {
     <div>
-        <div>Category ID</div>
+        <div>Tool ID</div>
         <div>@Model.ToolID</div>
     </div>
 
     <div>
-        <div>Category Name</div>
+        <div>Tool Name</div>
         <div>@Model.Name</div>
+    </div>
+
+    <div>
+        <div>Category Name</div>
+        <div>@Model.Category.Name</div>
+    </div>
+
+    <div>
+        <div>Lokasi Room</div>
+        <div>@Model.Room.Name</div>
     </div>
     <div>
         <a class="btn btn-primary" asp-controller="Tools" asp-action="Edit" asp-route-id="@Model.ToolID">Edit</a>

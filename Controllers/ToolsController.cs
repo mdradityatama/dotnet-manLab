@@ -58,6 +58,9 @@ namespace ManLab.Controllers
             List<Category> categories = _context.Categories.ToList();
             ViewData["Categories"] = categories;
 
+            List<Room> rooms = _context.Rooms.ToList();
+            ViewData["Rooms"] = rooms;
+
             return View(tool);
         }
 
@@ -69,12 +72,17 @@ namespace ManLab.Controllers
             List<Category> categories = _context.Categories.ToList();
             ViewData["Categories"] = categories;
 
+            List<Room> rooms = _context.Rooms.ToList();
+            ViewData["Rooms"] = rooms;
+
             if (tool != null)
             {
                 string name = Request.Form["toolName"];
                 string category = Request.Form["category"];
+                string room = Request.Form["room"];
                 tool.Name = name;
                 tool.CategoryID = int.Parse(category);
+                tool.RoomID = int.Parse(room);
                 _context.SaveChanges();
                 return RedirectToAction("Index", "Tools");
             }
@@ -93,14 +101,14 @@ namespace ManLab.Controllers
                 _context.SaveChanges();
             }
 
-            List<Tool> tools = _context.Tools.Include(c => c.Category).ToList();
+            List<Tool> tools = _context.Tools.Include(r => r.Room).Include(c => c.Category).ToList();
 
             return RedirectToAction("Index", tool);
         }
 
         public IActionResult Details(int id)
         {
-            Tool tool = _context.Tools.Where(x => x.ToolID == id).SingleOrDefault();
+            Tool tool = _context.Tools.Where(x => x.ToolID == id).Include(r => r.Room).Include(c => c.Category).SingleOrDefault();
 
             return View(tool);
         }

@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Edit Tool";
     IEnumerable<Category> Category = ViewData["Categories"] as IEnumerable<Category>;
+    IEnumerable<Room> Room = ViewData["Rooms"] as IEnumerable<Room>;
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -24,6 +25,15 @@
             @foreach (Category categories in Category)
             {
                 <option value="@categories.CategoryID">@categories.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Room">Room</label>
+        <select class="form-control" name="room">
+            @foreach (Room rooms in Room)
+            {
+                <option value="@rooms.RoomID">@rooms.Name</option>
             }
         </select>
     </div>
