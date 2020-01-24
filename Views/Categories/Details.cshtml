@@ -8,15 +8,11 @@
 
 @if (Model != null)
 {
-    <div>
-        <div>Category ID</div>
-        <div>@Model.CategoryID</div>
-    </div>
+    <ul class="list-group mb-3 mt-2">
+        <li class="list-group-item disabled">Category ID  : @Model.CategoryID</li>
+        <li class="list-group-item">Category Name : @Model.Name</li>
+    </ul>
 
-    <div>
-        <div>Category Name</div>
-        <div>@Model.Name</div>
-    </div>
     <div>
         <a class="btn btn-primary" asp-controller="Categories" asp-action="Edit" asp-route-id="@Model.CategoryID">Edit</a>
         <a class="btn btn-secondary" asp-controller="Categories" asp-action="Index">Back</a>

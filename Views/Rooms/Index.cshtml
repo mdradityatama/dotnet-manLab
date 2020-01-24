@@ -14,7 +14,7 @@
         <tr>
             <th>ID</th>
             <th>Name Rooms</th>
-            <th>Action</th>
+            <th colspan="2">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +26,8 @@
                 <td>
                     <a class="btn btn-warning" asp-controller="Rooms" asp-action="Edit" asp-route-id="@rooms.RoomID">Edit</a>
                     <a class="btn btn-info" asp-controller="Rooms" asp-action="Details" asp-route-id="@rooms.RoomID">Details</a>
+                </td>
+                <td>
                     <form method="post" action="/Rooms/DeletePost/@rooms.RoomID" class="form-inline">
                         <button class="btn btn-danger" type="submit">Delete</button>
                     </form>
