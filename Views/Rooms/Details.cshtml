@@ -7,15 +7,11 @@
 
 @if (Model != null)
 {
-    <div>
-        <div>Category ID</div>
-        <div>@Model.RoomID</div>
-    </div>
+    <ul class="list-group mb-3 mt-2">
+        <li class="list-group-item disabled">Room ID  : @Model.RoomID</li>
+        <li class="list-group-item">Room Name : @Model.Name</li>
+    </ul>
 
-    <div>
-        <div>Category Name</div>
-        <div>@Model.Name</div>
-    </div>
     <div>
         <a class="btn btn-primary" asp-controller="Rooms" asp-action="Edit" asp-route-id="@Model.RoomID">Edit</a>
         <a class="btn btn-secondary" asp-controller="Rooms" asp-action="Index">Back</a>

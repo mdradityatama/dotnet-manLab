@@ -18,7 +18,7 @@
             <th>Name Tool</th>
             <th>Name Category</th>
             <th>Ruang</th>
-            <th>Action</th>
+            <th colspan="2">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +32,8 @@
                 <td>
                     <a class="btn btn-warning" asp-controller="Tools" asp-action="Edit" asp-route-id="@tools.ToolID">Edit</a>
                     <a class="btn btn-info" asp-controller="Tools" asp-action="Details" asp-route-id="@tools.ToolID">Details</a>
+                </td>
+                <td>
                     <form method="post" action="/Tools/DeletePost/@tools.ToolID" class="form-inline">
                         <button class="btn btn-danger" type="submit">Delete</button>
                     </form>

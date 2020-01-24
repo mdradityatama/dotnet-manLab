@@ -8,25 +8,13 @@
 
 @if (Model != null)
 {
-    <div>
-        <div>Tool ID</div>
-        <div>@Model.ToolID</div>
-    </div>
+    <ul class="list-group mb-3 mt-2">
+        <li class="list-group-item disabled">Tool ID : @Model.ToolID</li>
+        <li class="list-group-item">Tool Name : @Model.Name</li>
+        <li class="list-group-item">Category Name : @Model.Category.Name</li>
+        <li class="list-group-item">Lokasi Room : @Model.Room.Name</li>
+    </ul>
 
-    <div>
-        <div>Tool Name</div>
-        <div>@Model.Name</div>
-    </div>
-
-    <div>
-        <div>Category Name</div>
-        <div>@Model.Category.Name</div>
-    </div>
-
-    <div>
-        <div>Lokasi Room</div>
-        <div>@Model.Room.Name</div>
-    </div>
     <div>
         <a class="btn btn-primary" asp-controller="Tools" asp-action="Edit" asp-route-id="@Model.ToolID">Edit</a>
         <a class="btn btn-secondary" asp-controller="Tools" asp-action="Index">Back</a>
