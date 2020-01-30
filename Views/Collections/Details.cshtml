@@ -1,0 +1,29 @@
+﻿@model Collection
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@if (Model != null)
+{
+<ul class="list-group mb-3 mt-2">
+    <li class="list-group-item disabled">Collection ID  : @Model.CollectionID</li>
+    <li class="list-group-item">Tool Name : @Model.Tool.Name</li>
+    <li class="list-group-item">Category Name : @Model.Category.Name</li>
+    <li class="list-group-item">Room Name : @Model.Room.Name</li>
+    <li class="list-group-item">Total Tools : @Model.Total</li>
+</ul>
+
+    <div>
+        <a class="btn btn-primary" asp-controller="Collections" asp-action="Edit" asp-route-id="@Model.CollectionID">Edit</a>
+        <a class="btn btn-secondary" asp-controller="Collections" asp-action="Index">Back</a>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        Collection tidak ada di database!
+    </div>
+}

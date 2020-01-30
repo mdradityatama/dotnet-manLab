@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+    IEnumerable<Tool> tools = ViewData["Tools"] as IEnumerable<Tool>;
+    IEnumerable<Category> categories = ViewData["Categories"] as IEnumerable<Category>;
+    IEnumerable<Room> rooms = ViewData["Rooms"] as IEnumerable<Room>;
+}
+
+<h1>Create</h1>
+
+<form method="post" action="/Collections/CreatePost">
+    <div class="form-group">
+        <label for="category">Tool</label>
+        <select class="form-control" name="tool">
+            @foreach (Tool tool in tools)
+            {
+                <option value="@tool.ToolID">@tool.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" name="category">
+            @foreach (Category category in categories)
+            {
+                <option value="@category.CategoryID">@category.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Room">Room</label>
+        <select class="form-control" name="room">
+            @foreach (Room room in rooms)
+            {
+                <option value="@room.RoomID">@room.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="totalName">Total</label>
+        <input class="form-control" id="totalName" name="nameTotal" placeholder="Enter Total">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

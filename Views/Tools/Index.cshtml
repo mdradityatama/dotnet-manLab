@@ -16,8 +16,6 @@
         <tr>
             <th>ID</th>
             <th>Name Tool</th>
-            <th>Name Category</th>
-            <th>Ruang</th>
             <th colspan="2">Action</th>
         </tr>
     </thead>
@@ -27,8 +25,6 @@
             <tr>
                 <th scope="row">@tools.ToolID</th>
                 <td>@tools.Name</td>
-                <td>@tools.Category.Name</td>
-                <td>@tools.Room.Name</td>
                 <td>
                     <a class="btn btn-warning" asp-controller="Tools" asp-action="Edit" asp-route-id="@tools.ToolID">Edit</a>
                     <a class="btn btn-info" asp-controller="Tools" asp-action="Details" asp-route-id="@tools.ToolID">Details</a>

@@ -1,0 +1,55 @@
+﻿@model Collection
+
+@{
+    ViewData["Title"] = "Edit";
+    IEnumerable<Tool> tools = ViewData["Tools"] as IEnumerable<Tool>;
+    IEnumerable<Category> categories = ViewData["Categories"] as IEnumerable<Category>;
+    IEnumerable<Room> rooms = ViewData["Rooms"] as IEnumerable<Room>;
+}
+
+<h1>Edit</h1>
+
+@if (Model != null)
+{
+<form method="post" action="/Collections/EditPost/@Model.CollectionID">
+    <div class="form-group">
+        <label for="category">Tool</label>
+        <select class="form-control" name="tool">
+            @foreach (Tool tool in tools)
+            {
+                <option value="@tool.ToolID">@tool.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" name="category">
+            @foreach (Category category in categories)
+            {
+                <option value="@category.CategoryID">@category.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Room">Room</label>
+        <select class="form-control" name="room">
+            @foreach (Room room in rooms)
+            {
+                <option value="@room.RoomID">@room.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="totalName">Total</label>
+        <input class="form-control" id="totalName" name="nameTotal" value="@Model.Total">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a class="btn btn-secondary" asp-controller="Collections" asp-action="Details" asp-route-id="@Model.CategoryID">Cancel</a>
+</form>
+}
+else
+{
+    <div class="alert alert-danger">
+        Kategori tidak ada di database!
+    </div>
+}
