@@ -2,7 +2,7 @@
 
 namespace ManLab.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Collection : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,25 +38,45 @@ namespace ManLab.Migrations
                 {
                     ToolID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    CategoryID = table.Column<int>(nullable: false),
-                    RoomID = table.Column<int>(nullable: true)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tools", x => x.ToolID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Collections",
+                columns: table => new
+                {
+                    CollectionID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ToolID = table.Column<int>(nullable: false),
+                    CategoryID = table.Column<int>(nullable: false),
+                    RoomID = table.Column<int>(nullable: false),
+                    Total = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Collections", x => x.CollectionID);
                     table.ForeignKey(
-                        name: "FK_Tools_Categories_CategoryID",
+                        name: "FK_Collections_Categories_CategoryID",
                         column: x => x.CategoryID,
                         principalTable: "Categories",
                         principalColumn: "CategoryID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tools_Rooms_RoomID",
+                        name: "FK_Collections_Rooms_RoomID",
                         column: x => x.RoomID,
                         principalTable: "Rooms",
                         principalColumn: "RoomID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Collections_Tools_ToolID",
+                        column: x => x.ToolID,
+                        principalTable: "Tools",
+                        principalColumn: "ToolID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -81,36 +101,56 @@ namespace ManLab.Migrations
 
             migrationBuilder.InsertData(
                 table: "Tools",
-                columns: new[] { "ToolID", "CategoryID", "Name", "RoomID" },
+                columns: new[] { "ToolID", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1, "Kursi", null },
-                    { 2, 1, "Meja", null },
-                    { 4, 1, "Penghapus", null },
-                    { 3, 2, "Spidol", null }
+                    { 1, "Kursi" },
+                    { 2, "Meja" },
+                    { 3, "Spidol" },
+                    { 4, "Penghapus" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Collections",
+                columns: new[] { "CollectionID", "CategoryID", "RoomID", "ToolID", "Total" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 1, 10 },
+                    { 2, 2, 2, 2, 20 },
+                    { 5, 1, 1, 2, 50 },
+                    { 3, 1, 3, 3, 30 },
+                    { 4, 2, 4, 4, 40 }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tools_CategoryID",
-                table: "Tools",
+                name: "IX_Collections_CategoryID",
+                table: "Collections",
                 column: "CategoryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tools_RoomID",
-                table: "Tools",
+                name: "IX_Collections_RoomID",
+                table: "Collections",
                 column: "RoomID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Collections_ToolID",
+                table: "Collections",
+                column: "ToolID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tools");
+                name: "Collections");
 
             migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Rooms");
+
+            migrationBuilder.DropTable(
+                name: "Tools");
         }
     }
 }

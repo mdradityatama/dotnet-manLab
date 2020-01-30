@@ -1,0 +1,45 @@
+﻿@model List<Collection>
+
+@{
+    ViewData["Title"] = "Index Collections Tool";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="mb-3 text-right">
+    <a class="btn btn-primary" asp-controller="Collections" asp-action="Create">Create</a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name Tool</th>
+            <th>Name Category</th>
+            <th>Name Room</th>
+            <th>Total</th>
+            <th colspan="2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Collection collections in Model)
+        {
+            <tr>
+                <th scope="row">@collections.CollectionID</th>
+                <td>@collections.Tool.Name</td>
+                <td>@collections.Category.Name</td>
+                <td>@collections.Room.Name</td>
+                <td>@collections.Total</td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Collections" asp-action="Edit" asp-route-id="@collections.CollectionID">Edit</a>
+                    <a class="btn btn-info" asp-controller="Collections" asp-action="Details" asp-route-id="@collections.CollectionID">Details</a>
+                </td>
+                <td>
+                    <form method="post" action="/Collections/DeletePost/@collections.CollectionID" class="form-inline">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

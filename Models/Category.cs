@@ -8,11 +8,11 @@ namespace ManLab.Models
         [Key]
         public int CategoryID { get; set; }
         public string Name { get; set; }
-        public List<Tool> Tools { get; set; }
+        public List<Collection> Collections { get; set; }
 
         public Category()
         {
-            this.Tools = new List<Tool>();
+            this.Collections = new List<Collection>();
         }
     }
 }

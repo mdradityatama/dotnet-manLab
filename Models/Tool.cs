@@ -9,9 +9,10 @@ namespace ManLab.Models
         [Key]
         public int ToolID { get; set; }
         public string Name { get; set; }
-        public int CategoryID { get; set; }
-        public int RoomID { get; set; }
-        public Category Category { get; set; }
-        public Room Room { get; set; }
+        public List<Collection> Collections { get; set; }
+        public Tool()
+        {
+            this.Collections = new List<Collection>();
+        }
     }
 }
